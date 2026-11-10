@@ -158,32 +158,10 @@ function PixelHeart({ delay = 0 }: { delay?: number }) {
   );
 }
 
-function AnimeTile({ title, variant }: { title: string; variant: number }) {
+function AnimeTile({ title, image, variant }: { title: string; image: string; variant: number }) {
   return (
     <div className="rounded-lg bg-cream p-2 shadow-soft" style={{ rotate: variant ? "2deg" : "-2deg" }}>
-      <svg viewBox="0 0 160 100" className="w-full rounded">
-        <rect width="160" height="100" fill={variant ? "var(--blush)" : "var(--moonlight)"} />
-        <circle cx={variant ? 125 : 35} cy="25" r="12" fill="var(--cream)" />
-        <path d="M0 80 Q40 70 80 78 T160 74 V100 H0Z" fill="var(--lavender)" opacity=".6" />
-        {variant === 0 ? (
-          <g>
-            <path d="M110 100 V55 Q112 40 100 30" stroke="var(--night)" strokeWidth="3" fill="none" />
-            {[[100, 30], [118, 38], [92, 44], [124, 52], [108, 22]].map(([x, y], i) => (
-              <circle key={i} cx={x} cy={y} r="11" fill="var(--blush-deep)" opacity=".9" />
-            ))}
-            <rect x="40" y="70" width="40" height="4" rx="2" fill="var(--night)" />
-            <rect x="44" y="74" width="3" height="10" fill="var(--night)" />
-            <rect x="73" y="74" width="3" height="10" fill="var(--night)" />
-          </g>
-        ) : (
-          <g>
-            <path d="M60 70 Q60 50 80 50 Q100 50 100 70 Z" fill="var(--cream)" stroke="var(--night)" strokeWidth="2" />
-            <rect x="58" y="68" width="44" height="12" rx="3" fill="var(--blush-deep)" />
-            <circle cx="80" cy="45" r="5" fill="var(--blush-deep)" />
-            <path d="M40 30 l4 -4 l4 4 l-4 8z M118 70 l3 -3 l3 3 l-3 6z" fill="var(--cream)" />
-          </g>
-        )}
-      </svg>
+      <img src={image} alt={title} className="aspect-[8/5] w-full rounded object-cover" />
       <p className="mt-2 text-center font-hand text-lg leading-tight text-night">{title}</p>
     </div>
   );
@@ -214,7 +192,7 @@ function StoryCard({ index, onClose }: { index: number; onClose: () => void }) {
         {index === 0 && <div className="mt-3 flex gap-2">{[0, 1, 2].map((i) => <PixelHeart key={i} delay={i * 0.2} />)}</div>}
         {"shows" in card && card.shows && (
           <div className="mt-5 grid grid-cols-2 gap-4">
-            {card.shows.map((s, i) => <AnimeTile key={s} title={s} variant={i} />)}
+            {card.shows.map((show, i) => <AnimeTile key={show.title} {...show} variant={i} />)}
           </div>
         )}
         <div className="mt-5 space-y-4">
