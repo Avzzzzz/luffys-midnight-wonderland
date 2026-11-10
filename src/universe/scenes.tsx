@@ -190,7 +190,7 @@ function AnimeTile({ title, variant }: { title: string; variant: number }) {
 }
 
 function StoryCard({ index, onClose }: { index: number; onClose: () => void }) {
-  const card = content.cards[index];
+  const card = content.cards[index]!;
   return (
     <motion.div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-night/70 p-4 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
       {index === 2 && <Petals count={20} />}
@@ -249,7 +249,7 @@ export function StarsScene({ onNext }: SceneProps) {
       <div className="relative z-10 mt-6 aspect-square w-full max-w-md">
         <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
           {STAR_POS.map(([x, y], i) => {
-            const [x2, y2] = STAR_POS[(i + 1) % STAR_POS.length];
+            const [x2, y2] = STAR_POS[(i + 1) % STAR_POS.length]!;
             const show = found.includes(i) && found.includes((i + 1) % STAR_POS.length);
             return <motion.line key={i} x1={x} y1={y} x2={x2} y2={y2} stroke="var(--lavender)" strokeWidth=".4" strokeDasharray="1 1" initial={{ pathLength: 0 }} animate={{ pathLength: show ? 1 : 0, opacity: show ? 0.8 : 0 }} transition={{ duration: 0.8 }} />;
           })}
