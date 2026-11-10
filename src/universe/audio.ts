@@ -56,7 +56,7 @@ export function startMusic() {
       const n = melody[step % melody.length];
       if (n) tone(n, next, 1.4, 0.045, "sine");
       if (n) tone(n * 2, next, 0.6, 0.012, "triangle");
-      if (step % 2 === 0) tone(bass[(step / 2) % bass.length], next, 1.6, 0.03, "sine");
+      if (step % 2 === 0) tone(bass[(step / 2) % bass.length]!, next, 1.6, 0.03, "sine");
       next += beat;
       step++;
     }
@@ -123,7 +123,7 @@ export async function listenForBlow(onBlow: () => void): Promise<() => void> {
   const loop = () => {
     an.getByteFrequencyData(data);
     let low = 0;
-    for (let i = 0; i < 20; i++) low += data[i];
+    for (let i = 0; i < 20; i++) low += data[i]!;
     low /= 20;
     hits = low > 130 ? hits + 1 : Math.max(0, hits - 1);
     if (hits > 8) {

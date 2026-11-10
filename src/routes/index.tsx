@@ -131,7 +131,7 @@ function Companion() {
     }
     wake();
     const talk = window.setInterval(() => {
-      setMsg(content.catLines[Math.floor(Math.random() * content.catLines.length)]);
+      setMsg(content.catLines[Math.floor(Math.random() * content.catLines.length)]!);
       setTimeout(() => setMsg(null), 3500);
     }, 14000);
     return () => {
@@ -149,7 +149,7 @@ function Companion() {
         transition={{ duration: 3, repeat: Infinity }}
         onClick={() => {
           setSleep(false);
-          setMsg(content.catLines[Math.floor(Math.random() * content.catLines.length)]);
+          setMsg(content.catLines[Math.floor(Math.random() * content.catLines.length)]!);
           setTimeout(() => setMsg(null), 3000);
         }}
         aria-label="cat companion"
