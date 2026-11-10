@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- All user-editable copy, photo URL and music URL live in src/universe/content.ts — keeps personalisation in one file.
+- The experience is a client-only scene state machine in src/routes/index.tsx — avoids SSR hydration mismatches from random animations.
